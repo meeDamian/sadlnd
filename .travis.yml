@@ -2,8 +2,13 @@ dist: xenial
 services:
   - docker
 
-env:
-  - PREFIX=ancient
-  - PREFIX=insistent
+jobs:
+  include:
+    - stage: build
+      name: "Doesn't specify version, ends up with v0.0.2"
+      env: PREFIX=ancient
+
+    - name: "Specifies v0.6-beta, gets force moved to v0.5.1-beta.0.20190416133022-58ec9efed2a6"
+      env: PREFIX=insistent
 
 script: docker build --no-cache ${PREFIX}/
