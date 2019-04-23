@@ -1,0 +1,9 @@
+dist: xenial
+services:
+  - docker
+
+env:
+  - PREFIX=ancient
+  - PREFIX=insistent
+
+script: docker build --no-cache ${PREFIX}/
